@@ -9,9 +9,7 @@ import pandas as pd
 import operator
 import datetime
 
-
 print("Backend Loaded")
-
 
 def loadData(url):
     try:
@@ -67,9 +65,6 @@ def sortDict(input_dict):
 
 def topAmtStakedBar(add_dict, time_name="First"):
     staked = np.flip(np.array(list(add_dict.values())))
-
-    # if time_name == 'Last':
-    #     staked = staked[3:]
 
     print("Mean amount of staked value: ", np.mean(staked))
 
@@ -217,61 +212,3 @@ def filterAdds(og_holders, new_holders):
         if is_target_in_holder_list:
             del new_holders[val]
     return new_holders
-
-
-#
-# ''' og holders '''
-# url = 'https://api.flipsidecrypto.com/api/v2/queries/89eb6960-72db-499a-97cd-318098955410/data/latest' # OG HOLDERS
-# og_holders = loadData(url)
-# og_holders = formatHolders(og_holders)
-#
-# # ''' load transaction stuff '''
-# url = 'https://api.flipsidecrypto.com/api/v2/queries/ddf70c0d-d6e2-41a1-a014-6f33e84fab72/data/latest' # current balances
-# balances = loadData(url)
-# addresses = collectData(balances)
-# getPercALCX(addresses, og_holders, mode='First')              # calculates the percent of portfolios that are ALCX
-# exit()
-# print(balances[0])
-# exit()
-
-# url = 'https://api.flipsidecrypto.com/api/v2/queries/c44f9d8a-6a8c-4a6d-97f4-2f3a9cab6e54/data/latest' # transactions to staking pools
-# staked = loadData(url)
-# # getStakedAmt(staked, og_holders)
-# og_holders_w_stake = getStakedAmt(staked, og_holders)
-# getAvgStaked(og_holders_w_stake, mode='First')
-
-
-
-
-
-#
-#
-#
-# url = 'https://api.flipsidecrypto.com/api/v2/queries/ddf70c0d-d6e2-41a1-a014-6f33e84fab72/data/latest' # people with ALCX and amount of ALCX IN UDS
-# alcx_holder_data = loadData(url)
-# alcx_holders = formatHolders(alcx_holder_data)
-# alcx_holders = addALCXData(alcx_holders, alcx_holder_data)
-#
-# url = 'https://api.flipsidecrypto.com/api/v2/queries/666e59c4-0759-41a6-8fe5-21305ba4ba50/data/latest' # whole profile including ALCX
-# portfolios = loadData(url)
-# alcx_holders = addOtherData(alcx_holders, portfolios)
-#
-# # ''' og holders '''
-# # url = 'https://api.flipsidecrypto.com/api/v2/queries/89eb6960-72db-499a-97cd-318098955410/data/latest' # OG HOLDERS
-# # og_holders = loadData(url)
-# # og_holders = formatHoldersWData(og_holders, alcx_holders)
-# # getPercALCX(og_holders, mode='First')
-#
-#
-# # ''' new holders '''
-# url = 'https://api.flipsidecrypto.com/api/v2/queries/b662564a-f43a-4a78-b6c5-3ebeaeb14c51/data/latest' # end of march to present
-# new_holders = loadData(url)
-# new_holders = formatHoldersWData(new_holders, alcx_holders)
-# # getPercALCX(new_holders, mode='Last')
-#
-#
-#
-# url = 'https://api.flipsidecrypto.com/api/v2/queries/c44f9d8a-6a8c-4a6d-97f4-2f3a9cab6e54/data/latest' # transactions to staking pools
-# staked = loadData(url)
-# new_holders_w_stake = getStakedAmt(staked, new_holders)
-# getAvgStaked(new_holders_w_stake, mode='Last')
